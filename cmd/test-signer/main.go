@@ -6,40 +6,39 @@ import (
     "fmt"
     "net/http"
     "time"
+    "strings"
 )
+const jwtSecretKey = "test-signer"
 
-// Question is a struct to hold a question and its answer
+// Structs for handling request and response data
 type Question struct {
     ID       string `json:"id"`
     Question string `json:"question"`
     Answer   string `json:"answer"`
 }
 
-// SignRequest is the expected format of the /sign request body
 type SignRequest struct {
-    JWT       string      `json:"jwt"`
-    Questions []Question  `json:"questions"`
+    JWT       string     `json:"jwt"`
+    Questions []Question `json:"questions"`
 }
 
-// SignResponse is the format of the /sign response body
 type SignResponse struct {
     TestSignature string `json:"testSignature,omitempty"`
     Error         string `json:"error,omitempty"`
 }
 
-// VerifyRequest is the expected format of the /verify request body
 type VerifyRequest struct {
     User          string `json:"user"`
     TestSignature string `json:"testSignature"`
 }
 
-// VerifyResponse is the format of the /verify response body
 type VerifyResponse struct {
     Status    string     `json:"status,omitempty"`
     Timestamp time.Time  `json:"timestamp,omitempty"`
     Answers   []Question `json:"answers,omitempty"`
     Error     string     `json:"error,omitempty"`
 }
+
 
 // signAnswers handles the /sign endpoint
 func signAnswers(w http.ResponseWriter, r *http.Request) {
