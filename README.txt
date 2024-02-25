@@ -1,19 +1,17 @@
 Test Signer Service
 Overview
 
-The Test Signer Service is a RESTful API designed to sign user-submitted answers to a set of questions with a unique signature and verify these signatures at a later time. This service ensures that users' test submissions are authenticated and can be reliably verified.
+The Test Signer Service is a RESTful API designed to sign user-submitted answers to a set of questions with a unique signature and verify these signatures at a later time. This service ensures that users' test submissions are authenticated and can be reliably verified, with submissions persistently stored and retrievable across sessions.
 Getting Started
-
-To run the Test Signer Service on your local machine, follow these steps:
 Prerequisites
 
     Go installed on your machine (version 1.15 or later recommended).
 
 Installation
 
-Clone this repository to your local machine:
+    Clone this repository to your local machine:
 
-bash
+    bash
 
 git clone <repository-url>
 
@@ -27,9 +25,10 @@ Run the service:
 
 bash
 
-go run cmd/test-signer/main.go
+    go run main.go
 
-The service will start running on http://localhost:8080.
+    The service will start running on http://localhost:8080.
+
 API Endpoints
 Sign Answers
 
@@ -106,11 +105,9 @@ Error:
 
 json
 
-{
-  "error": "ErrorDescription"
-}
-
-
+        {
+          "error": "ErrorDescription"
+        }
 
 Contributing
 
